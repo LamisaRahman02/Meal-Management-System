@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Database Viewer - Meal Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body style="background:#eef1f6;">
+
+    <div class="topbar">
+        <h2><i class="fa-solid fa-database"></i> Database Viewer</h2>
+        <div class="userinfo"><a href="index.html">&larr; Back to App</a></div>
+    </div>
+
+    <div class="page" style="max-width:900px;">
+        <h1>What's Actually Stored</h1>
+        <p class="sub">This page reads straight from the browser's storage and shows it as tables &mdash; the same data the app is using right now.</p>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-circle-info"></i> How this "database" works (in plain words)</h3>
+            <p style="font-size:13.5px; line-height:1.7;">
+                A real deployed app would store its data on a server, in something like <b>MySQL</b> or
+                <b>PostgreSQL</b>. For this project, we're using the browser's own built-in storage box
+                called <b>localStorage</b> instead &mdash; it works the same way, just smaller and simpler,
+                which is perfect for a class project.
+            </p>
+            <p style="font-size:13.5px; line-height:1.7;">
+                Think of localStorage like a small filing cabinet inside your browser. Each drawer has a
+                label (we call it a <b>"key"</b>), like <code>"users"</code> or <code>"expenses"</code>.
+                Inside each drawer is a list of records saved as text (in a format called <b>JSON</b>).
+                That list of records is basically the same idea as a <b>table</b> in a normal database
+                &mdash; each record is like a row, and the fields inside it (name, email, amount...) are
+                like columns.
+            </p>
+            <p style="font-size:13.5px; line-height:1.7; margin-bottom:0;">
+                Every time you register, add an expense, mark attendance, and so on, the app calls a
+                function that writes into one of these drawers. Refresh the page or come back tomorrow
+                and the data is still there, because localStorage saves it to your computer's disk, not
+                just to memory.
+            </p>
+        </div>
+
+        <div style="text-align:center; margin-bottom:20px;">
+            <button class="btn" onclick="loadAllTables()"><i class="fa-solid fa-rotate"></i> Refresh Data</button>
+        </div>
+
+        <div id="tablesArea"></div>
+    </div>
+
+    <script>
+        // Each "table" we use in the app, with a friendly label and an
+        // explanation of what it stores. This list is just for showing
+        // things nicely on screen - the real data lives in localStorage.
+        var TABLES = [
+            { key: "users", label: "Users", icon: "fa-users", desc: "Everyone who has registered (name, email, role, which mess they joined). Passwords are hidden below." },
+            { key: "messes", label: "Messes", icon: "fa-house-user", desc: "Every mess (household) that has been created, its invite code, and seat capacity." },
+            { key: "plans", label: "Meal Plans", icon: "fa-bowl-food", desc: "Every meal added to the weekly menu." },
+            { key: "attendance", label: "Attendance", icon: "fa-clipboard-check", desc: "Who marked themselves as eating which meal, on which day." },
+            { key: "expenses", label: "Expenses", icon: "fa-file-invoice-dollar", desc: "Every rent / grocery / electricity expense the admin has logged." },
+            { key: "payments", label: "Payments", icon: "fa-money-bill-wave", desc: "Each member's share of the expenses, and whether it's still due or already paid." }
+        ];
+
+        function loadAllTables() {
+            var area = document.getElementById("tablesArea");
+            var html = "";
+
+            for (var t = 0; t < TABLES.length; t++) {
+                var table = TABLES[t];
+                var raw = localStorage.getItem(table.key);
+                var rows = raw ? JSON.parse(raw) : [];
+
+                html += "<div class='card'>";
+                html += "<h3><i class='fa-solid " + table.icon + "'></i> " + table.label +
+                    " <span class='tag'>" + rows.length + " record(s)</span></h3>";
+                html += "<p style='font-size:12.5px; color:#777; margin-top:-6px;'>" + table.desc + "</p>";
+
+                if (rows.length === 0) {
+                    html += "<p style='color:#999; font-size:13px;'>Empty right now &mdash; nothing saved under localStorage key \"" + table.key + "\" yet.</p>";
+                } else {
+                    // Build a table with one column per field found in the first record
+                    var columns = Object.keys(rows[0]);
+                    html += "<div style='overflow-x:auto;'><table><tr>";
+                    for (var c = 0; c < columns.length; c++) {
+                        html += "<th>" + columns[c] + "</th>";
+                    }
+                    html += "</tr>";
+
+                    for (var r = 0; r < rows.length; r++) {
+                        html += "<tr>";
+                        for (var c = 0; c < columns.length; c++) {
+                            var value = rows[r][columns[c]];
+                            // hide real passwords on screen - show dots instead
+                            if (columns[c] === "password") value = "••••••••";
+                            if (value === null || value === undefined) value = "-";
+                            html += "<td>" + value + "</td>";
+                        }
+                        html += "</tr>";
+                    }
+                    html += "</table></div>";
+                }
+
+                html += "</div>";
+            }
+
+            area.innerHTML = html;
+        }
+
+        // Load automatically when the page opens
+        loadAllTables();
+    </script>
+
+</body>
+
+</html>

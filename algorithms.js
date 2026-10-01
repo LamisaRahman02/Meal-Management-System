@@ -7,6 +7,7 @@ function merge(dateArr, idArr, left, mid, right) {
     var n1 = mid - left + 1;
     var n2 = right - mid;
     var Ldate = [], Lid = [], Rdate = [], Rid = [];
+   
 
     for (var i = 0; i < n1; i++) { Ldate[i] = dateArr[left + i]; Lid[i] = idArr[left + i]; }
     for (var j = 0; j < n2; j++) { Rdate[j] = dateArr[mid + 1 + j]; Rid[j] = idArr[mid + 1 + j]; }

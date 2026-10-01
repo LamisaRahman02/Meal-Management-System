@@ -54,7 +54,7 @@ function quickSort(nameArr, dueArr, low, high) {
     if (low < high) {
         var pivotIndex = partition(nameArr, dueArr, low, high);
         quickSort(nameArr, dueArr, low, pivotIndex);
-        quickSort(nameArr, dueArr, pivotIndex + 1, high);
+           quickSort(nameArr, dueArr, pivotIndex + 1, high);
     }
 }
 

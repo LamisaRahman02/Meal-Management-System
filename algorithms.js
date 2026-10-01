@@ -72,7 +72,7 @@ function selectionSortByRatio(nameArr, val, wt, ratio, n) {
     }
 }
 
-function fractionalKnapsack(nameArr, val, wt, n, capacity) {
+ function fractionalKnapsack(nameArr, val, wt, n, capacity) {
     var ratio = [];
     for (var i = 0; i < n; i++) ratio[i] = val[i] / wt[i];
 

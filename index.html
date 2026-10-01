@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -90,8 +90,11 @@
     <!-- ================= MAIN APP ================= -->
     <div id="appPage" class="appwrap" style="display:none;">
 
+        <!-- BACKDROP OVERLAY FOR MOBILE SIDEBAR -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
         <!-- SIDEBAR -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="brand">
                 <i class="fa-solid fa-utensils"></i>
                 <span>Meal Management System</span>
@@ -112,7 +115,12 @@
         <!-- MAIN CONTENT -->
         <div class="main">
             <div class="topbar">
-                <h2 id="pageTitle">Dashboard</h2>
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <h2 id="pageTitle">Dashboard</h2>
+                </div>
                 <div class="userinfo">
                     <span id="topUserName"></span>
                     &nbsp;|&nbsp;
@@ -126,7 +134,6 @@
         </div>
 
     </div>
-
 
     <!-- PART 1: login, mess, meal plan, attendance, profile -->
     <script src="part1.js"></script>

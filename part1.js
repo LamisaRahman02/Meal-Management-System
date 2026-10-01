@@ -254,7 +254,7 @@ function renderDashboard() {
         "</div>";
 }
 
-/* ---------------- CREATE / JOIN MESS ---------------- */
+/* ------------------ CREATE / JOIN MESS ---------------- */
 
 function renderMessPage() {
     var user = getCurrentUser();

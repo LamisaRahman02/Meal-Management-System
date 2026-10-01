@@ -15,7 +15,7 @@ function renderExpensesPage() {
         content.innerHTML = "<h1>Monthly Expenses</h1>" + needMessMessage("add expenses");
         return;
     }
-
+    
     var expenses = getData("expenses");
     var messExpenses = [];
     for (var i = 0; i < expenses.length; i++) {

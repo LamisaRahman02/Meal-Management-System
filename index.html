@@ -1,146 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Management System</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Management System</title>
+    <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- ================= LOGIN / REGISTER ================= -->
-    <div id="authPage" class="authwrap">
-        <div class="authbox">
-            <h1><i class="fa-solid fa-utensils"></i> Meal Management System</h1>
-            <p class="tagline">Meals and money, kept in one place</p>
+    <!-- ================= LOGIN / REGISTER ================= -->
+    <div id="authPage" class="authwrap">
+        <div class="authbox">
+            <h1><i class="fa-solid fa-utensils"></i> Meal Management System</h1>
+            <p class="tagline">Meals and money, kept in one place</p>
 
-            <!-- LOGIN FORM -->
-            <div id="loginForm">
-                <div class="field">
-                    <label>Email</label>
-                    <input type="email" id="loginEmail">
-                </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword">
-                </div>
-                <button class="btn btn-full" onclick="loginUser()">Login</button>
-                <div class="msg" id="loginMsg"></div>
-                <p class="switch-line">
-                    <a onclick="showTab('forgot')">Forgot password?</a>
-                    &nbsp;&middot;&nbsp;
-                    Don't have an account? <a onclick="showTab('register')">Register here</a>
-                </p>
-            </div>
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword">
+                </div>
+                <button class="btn btn-full" onclick="loginUser()">Login</button>
+                <div class="msg" id="loginMsg"></div>
+                <p class="switch-line">
+                    <a onclick="showTab('forgot')">Forgot password?</a>
+                    &nbsp;&middot;&nbsp;
+                    Don't have an account? <a onclick="showTab('register')">Register here</a>
+                </p>
+            </div>
 
-            <!-- FORGOT PASSWORD FORM -->
-            <div id="forgotForm" style="display:none;">
-                <p style="font-size:13px; color:#666; margin-top:0;">
-                    Enter the email on your account and choose a new password.
-                    This is a school project demo, so there is no email sent &mdash;
-                    it just checks the email matches an account and updates the password right away.
-                </p>
-                <div class="field">
-                    <label>Your Email</label>
-                    <input type="email" id="forgotEmail">
-                </div>
-                <div class="field">
-                    <label>New Password</label>
-                    <input type="password" id="forgotNewPassword">
-                </div>
-                <button class="btn btn-full" onclick="resetPassword()">Reset Password</button>
-                <div class="msg" id="forgotMsg"></div>
-                <p class="switch-line"><a onclick="showTab('login')">Back to Login</a></p>
-            </div>
+            <!-- FORGOT PASSWORD FORM -->
+            <div id="forgotForm" style="display:none;">
+                <p style="font-size:13px; color:#666; margin-top:0;">
+                    Enter the email on your account and choose a new password.
+                    This is a school project demo, so there is no email sent &mdash;
+                    it just checks the email matches an account and updates the password right away.
+                </p>
+                <div class="field">
+                    <label>Your Email</label>
+                    <input type="email" id="forgotEmail">
+                </div>
+                <div class="field">
+                    <label>New Password</label>
+                    <input type="password" id="forgotNewPassword">
+                </div>
+                <button class="btn btn-full" onclick="resetPassword()">Reset Password</button>
+                <div class="msg" id="forgotMsg"></div>
+                <p class="switch-line"><a onclick="showTab('login')">Back to Login</a></p>
+            </div>
 
-            <!-- REGISTER FORM -->
-            <div id="registerForm" style="display:none;">
-                <div class="field">
-                    <label>Full Name</label>
-                    <input type="text" id="regName">
-                </div>
-                <div class="field">
-                    <label>Email</label>
-                    <input type="email" id="regEmail">
-                </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input type="password" id="regPassword">
-                </div>
-                <div class="field">
-                    <label>Account Type</label>
-                    <select id="regRole">
-                        <option value="member">Member</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-                <button class="btn btn-full" onclick="registerUser()">Register</button>
-                <div class="msg" id="regMsg"></div>
-                <p class="switch-line">Already have an account? <a onclick="showTab('login')">Login here</a></p>
-            </div>
-        </div>
-    </div>
+            <!-- REGISTER FORM -->
+            <div id="registerForm" style="display:none;">
+                <div class="field">
+                    <label>Full Name</label>
+                    <input type="text" id="regName">
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="regEmail">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="regPassword">
+                </div>
+                <div class="field">
+                    <label>Account Type</label>
+                    <select id="regRole">
+                        <option value="member">Member</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button class="btn btn-full" onclick="registerUser()">Register</button>
+                <div class="msg" id="regMsg"></div>
+                <p class="switch-line">Already have an account? <a onclick="showTab('login')">Login here</a></p>
+            </div>
+        </div>
+    </div>
 
 
-    <!-- ================= MAIN APP ================= -->
-    <div id="appPage" class="appwrap" style="display:none;">
+    <!-- ================= MAIN APP ================= -->
+    <div id="appPage" class="appwrap" style="display:none;">
 
-        <!-- BACKDROP OVERLAY FOR MOBILE SIDEBAR -->
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Meal Management System</span>
+            </div>
+            <nav>
+                <a data-page="dashboard" onclick="showPage('dashboard')"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                <a data-page="mess" onclick="showPage('mess')"><i class="fa-solid fa-house-user"></i> Create/Join Mess</a>
+                <a data-page="mealplan" onclick="showPage('mealplan')"><i class="fa-solid fa-bowl-food"></i> Meal Plan</a>
+                <a data-page="attendance" onclick="showPage('attendance')"><i class="fa-solid fa-clipboard-check"></i> Attendance</a>
+                <a data-page="expenses" onclick="showPage('expenses')"><i class="fa-solid fa-file-invoice-dollar"></i> Expenses</a>
+                <a data-page="payments" onclick="showPage('payments')"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+                <a data-page="budget" onclick="showPage('budget')"><i class="fa-solid fa-calculator"></i> Budget Tools</a>
+                <a data-page="profile" onclick="showPage('profile')"><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="database.html" target="_blank"><i class="fa-solid fa-database"></i> View Database</a>
+            </nav>
+        </div>
 
-        <!-- SIDEBAR -->
-        <div class="sidebar" id="sidebar">
-            <div class="brand">
-                <i class="fa-solid fa-utensils"></i>
-                <span>Meal Management System</span>
-            </div>
-            <nav>
-                <a data-page="dashboard" onclick="showPage('dashboard')"><i class="fa-solid fa-gauge"></i> Dashboard</a>
-                <a data-page="mess" onclick="showPage('mess')"><i class="fa-solid fa-house-user"></i> Create/Join Mess</a>
-                <a data-page="mealplan" onclick="showPage('mealplan')"><i class="fa-solid fa-bowl-food"></i> Meal Plan</a>
-                <a data-page="attendance" onclick="showPage('attendance')"><i class="fa-solid fa-clipboard-check"></i> Attendance</a>
-                <a data-page="expenses" onclick="showPage('expenses')"><i class="fa-solid fa-file-invoice-dollar"></i> Expenses</a>
-                <a data-page="payments" onclick="showPage('payments')"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
-                <a data-page="budget" onclick="showPage('budget')"><i class="fa-solid fa-calculator"></i> Budget Tools</a>
-                <a data-page="profile" onclick="showPage('profile')"><i class="fa-solid fa-user"></i> Profile</a>
-                <a href="database.html" target="_blank"><i class="fa-solid fa-database"></i> View Database</a>
-            </nav>
-        </div>
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <div class="topbar">
+                <h2 id="pageTitle">Dashboard</h2>
+                <div class="userinfo">
+                    <span id="topUserName"></span>
+                    &nbsp;|&nbsp;
+                    <a onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
+            </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="main">
-            <div class="topbar">
-                <div class="topbar-left">
-                    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <h2 id="pageTitle">Dashboard</h2>
-                </div>
-                <div class="userinfo">
-                    <span id="topUserName"></span>
-                    &nbsp;|&nbsp;
-                    <a onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                </div>
-            </div>
+            <div class="page" id="pageContent">
+                <!-- filled by JavaScript -->
+            </div>
+        </div>
 
-            <div class="page" id="pageContent">
-                <!-- filled by JavaScript -->
-            </div>
-        </div>
+    </div>
 
-    </div>
 
-    <!-- PART 1: login, mess, meal plan, attendance, profile -->
-    <script src="part1.js"></script>
+    <!-- PART 1: login, mess, meal plan, attendance, profile -->
+    <script src="part1.js"></script>
 
-    <!-- PART 2: expenses, payments, budget tools (algorithms) -->
-    <script src="part2.js"></script>
+    <!-- PART 2: expenses, payments, budget tools (algorithms) -->
+    <script src="part2.js"></script>
 
 </body>
 
-</html>
+</html> it doesnt show properly on mobile screen
